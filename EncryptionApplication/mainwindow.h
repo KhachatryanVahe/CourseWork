@@ -26,14 +26,15 @@ private slots:
     //Vignenere encryption encrypt and decrypt buttons
     void on_pushButtonEncrypt_3_clicked();
     void on_pushButtonDecrypt_3_clicked();
-
+    //Caesare encryption encrypt and decrypt buttons
     void on_pushButtonEncrypt_4_clicked();
-
     void on_pushButtonDecrypt_4_clicked();
-
+    //RLE encryption encrypt and decrypt buttons
     void on_pushButtonEncrypt_5_clicked();
-
     void on_pushButtonDecrypt_5_clicked();
+    //RSA algorithm encrypt and decrypt buttons
+    void on_pushButtonEncrypt_6_clicked();
+    void on_pushButtonDecrypt_6_clicked();
 
 private:
     Ui::MainWindow *ui;

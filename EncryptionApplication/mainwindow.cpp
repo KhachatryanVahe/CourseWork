@@ -4,12 +4,15 @@
 using std::string;
 
 int getRandomNumber(int);
+bool isPrime(int number);
 string cipherByVigenereCipher(string& data, const string& key);
 string decipherByVigenereCipher(string& data, const string& key);
 string cipherByCaesarCipher(string& data, int shft);
 string decipherByCaesarCipher(string& data, int shft);
 string compressRLE(string& data);
 string decompressRLE(string& data);
+double encryptionRSA(double& prime_number1, double& prime_number2, double& message);
+double decryptionRSA(double prime_number1, double prime_number2, double encrypted_message);
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -17,6 +20,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->lineEditPrimeNumber1->setValidator(new QIntValidator);
+    ui->lineEditPrimeNumber2->setValidator(new QIntValidator);
+    ui->lineEditSource_6->setValidator(new QDoubleValidator);
+    ui->lineEditEncrypted_6->setValidator(new QDoubleValidator);
+    ui->lineEditDecrypted_6->setValidator(new QDoubleValidator);
 }
 
 MainWindow::~MainWindow()
@@ -176,4 +184,34 @@ void MainWindow::on_pushButtonDecrypt_5_clicked()
     string decompressed_data_8bit = decompressRLE(compressed_data_8bit);
     QString decompressed_data = QString::fromLocal8Bit(decompressed_data_8bit);
     ui->lineEditDecrypted_5->setText(decompressed_data);
+}
+
+void MainWindow::on_pushButtonEncrypt_6_clicked()
+{
+
+    double prime_number1 = ui->lineEditPrimeNumber1->text().toInt();
+    double prime_number2 = ui->lineEditPrimeNumber2->text().toInt();
+    if (isPrime(prime_number1) && isPrime(prime_number2)) {
+        double source = ui->lineEditSource_6->text().toDouble();
+        double encrypted_message = encryptionRSA(prime_number1, prime_number2, source);
+        encrypted_message = fmod(encrypted_message, prime_number1 * prime_number2);
+        ui->lineEditEncrypted_6->setText(QString::number(encrypted_message));
+    } else {
+        QMessageBox::warning(this, "Warning", "Passed numbers isn't prime.");
+    }
+}
+
+
+void MainWindow::on_pushButtonDecrypt_6_clicked()
+{
+    double prime_number1 = ui->lineEditPrimeNumber1->text().toInt();
+    double prime_number2 = ui->lineEditPrimeNumber2->text().toInt();
+    if (isPrime(prime_number1) && isPrime(prime_number2)) {
+        double source = ui->lineEditSource_6->text().toDouble();
+        double encrypted_message = encryptionRSA(prime_number1, prime_number2, source);
+        double decrypted_message = decryptionRSA(prime_number1, prime_number2, encrypted_message);
+        ui->lineEditDecrypted_6->setText(QString::number(decrypted_message));
+    } else {
+        QMessageBox::warning(this, "Warning", "Passed numbers isn't prime.");
+    }
 }

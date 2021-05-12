@@ -1,4 +1,5 @@
 #include <QString>
+#include <cmath>
 using std::string;
 
 int getRandomNumber(int i)
@@ -13,6 +14,34 @@ QString generatePattern(const QString& source)
     return output;
 }
 
+bool isPrime(int number)    //checks the pased number is prime or not
+{
+    int i = 2;
+    while (i <= sqrt(number) && number % i != 0) {
+        i++;
+    }
+    if (sqrt(number) < i) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+int findGreatestCommonDivisor(int a, int b) //finds greatest common divisor for two numbers
+{
+    while (a != b)
+    {
+        if (a > b) {
+            a -= b;
+        } else {
+            b -= a;
+        }
+    }
+    return a;
+}
+
+//===============Vigenere Cipher=============
 string cipherByVigenereCipher(string& data, const string& key)
 {
     string encoded_data;
@@ -85,6 +114,7 @@ string decipherByVigenereCipher(string& data, const string& key)
     return decoded_data;
 }
 
+//==============Caesare Cipher===================
 string cipherByCaesarCipher(string& data, int shft)
 {
     string encoded_data;
@@ -95,7 +125,10 @@ string cipherByCaesarCipher(string& data, int shft)
             } else {
                 encoded_data.push_back((data[index] + shft - 97) % 26 + 97);
             }
+        } else {
+            encoded_data.push_back(data[index]);
         }
+
     }
     return encoded_data;
 }
@@ -110,11 +143,14 @@ string decipherByCaesarCipher(string& data, int shft)
             } else {
                 decoded_data.push_back((data[index] + (26 - shft) - 97) % 26 + 97);
             }
+        } else {
+            decoded_data.push_back(data[index]);
         }
     }
     return decoded_data;
 }
 
+//================Run-length encoding compression================
 string compressRLE(string& data)
 {
     string encoded_data;
@@ -172,4 +208,45 @@ string decompressRLE(string& data)
         }
     }
     return decoded_data;
+}
+
+//==============Rivest–Shamir–Adleman(RSA) algorithm==========
+double encryptionRSA(double& prime_number1, double& prime_number2, double& message)
+{
+    //double product_prime_numbers = prime_number1 * prime_number2;
+    double track = 0;
+    double phi = (prime_number1 - 1) * (prime_number2 - 1); //calculate phi
+    //public key stands for encrypt
+    double public_key = 2;
+    //for checking that 1 < public_key < phi(n) and gcd(public_key, phi(n)) = 1; i.e., e and phi(n) are coprime.
+    while (public_key < phi && track != 1) {
+        track = findGreatestCommonDivisor(public_key, phi);
+        if (1 != track) {
+            public_key++;
+        }
+    }
+    //private key stands for decrypt
+    double encrypted_message = pow(message, public_key); //encrypt the message
+    //encrypted_message = fmod(encrypted_message, product_prime_numbers);
+    return encrypted_message;
+}
+
+double decryptionRSA(double prime_number1, double prime_number2, double encrypted_message)
+{
+    double product_prime_number = prime_number1 * prime_number2;
+    double track = 0;
+    double phi = (prime_number1 - 1) * (prime_number2 - 1); //calculate phi
+    double public_key = 2;
+    //for checking that 1 < public_key < phi(n) and gcd(public_key, phi(n)) = 1; i.e., e and phi(n) are coprime.
+    while (public_key < phi && track != 1) {
+        track = findGreatestCommonDivisor(public_key, phi);
+        if (1 != track) {
+            public_key++;
+        }
+    }
+    //private key stands for decrypt
+    double private_key = fmod(1 / public_key, phi);
+    double decrypted_message = pow(encrypted_message, private_key);
+    decrypted_message = fmod(decrypted_message, product_prime_number);
+    return decrypted_message;
 }

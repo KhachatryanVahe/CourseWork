@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
-    <height>586</height>
+    <width>981</width>
+    <height>607</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,8 +26,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>730</x>
-      <y>510</y>
+      <x>720</x>
+      <y>530</y>
       <width>111</width>
       <height>23</height>
      </rect>
@@ -46,6 +46,9 @@
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetNoConstraint</enum>
+     </property>
      <item>
       <widget class="QGroupBox" name="groupBox">
        <property name="title">
@@ -370,7 +373,7 @@
      <rect>
       <x>40</x>
       <y>10</y>
-      <width>261</width>
+      <width>271</width>
       <height>16</height>
      </rect>
     </property>
@@ -384,7 +387,7 @@
       <x>30</x>
       <y>290</y>
       <width>921</width>
-      <height>201</height>
+      <height>221</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -397,7 +400,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>80</y>
           <width>281</width>
           <height>80</height>
          </rect>
@@ -439,7 +442,7 @@
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>150</y>
+          <y>170</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -465,7 +468,7 @@
         <property name="geometry">
          <rect>
           <x>140</x>
-          <y>20</y>
+          <y>30</y>
           <width>131</width>
           <height>31</height>
          </rect>
@@ -494,7 +497,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>80</y>
           <width>281</width>
           <height>80</height>
          </rect>
@@ -536,7 +539,7 @@
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>150</y>
+          <y>170</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -563,13 +566,13 @@
      <item>
       <widget class="QGroupBox" name="groupBox_6">
        <property name="title">
-        <string>Huffman coding</string>
+        <string>RSA encryption</string>
        </property>
        <widget class="QWidget" name="formLayoutWidget_6">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>60</y>
+          <y>80</y>
           <width>281</width>
           <height>80</height>
          </rect>
@@ -597,13 +600,25 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="lineEditSource_6"/>
+          <widget class="QLineEdit" name="lineEditSource_6">
+           <property name="inputMethodHints">
+            <set>Qt::ImhPreferNumbers</set>
+           </property>
+          </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLineEdit" name="lineEditEncrypted_6"/>
+          <widget class="QLineEdit" name="lineEditEncrypted_6">
+           <property name="inputMethodHints">
+            <set>Qt::ImhPreferNumbers</set>
+           </property>
+          </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QLineEdit" name="lineEditDecrypted_6"/>
+          <widget class="QLineEdit" name="lineEditDecrypted_6">
+           <property name="inputMethodHints">
+            <set>Qt::ImhPreferNumbers</set>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -611,7 +626,7 @@
         <property name="geometry">
          <rect>
           <x>80</x>
-          <y>150</y>
+          <y>170</y>
           <width>171</width>
           <height>31</height>
          </rect>
@@ -633,6 +648,52 @@
          </item>
         </layout>
        </widget>
+       <widget class="QWidget" name="layoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>281</width>
+          <height>44</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelPrimeNumber1">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;First prime number&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Second prime number&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="lineEditPrimeNumber1">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::PreventContextMenu</enum>
+           </property>
+           <property name="inputMethodHints">
+            <set>Qt::ImhPreferNumbers</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="lineEditPrimeNumber2">
+           <property name="inputMethodHints">
+            <set>Qt::ImhPreferNumbers</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </item>
     </layout>
@@ -643,7 +704,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>984</width>
+     <width>981</width>
      <height>21</height>
     </rect>
    </property>
@@ -651,7 +712,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
